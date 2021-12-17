@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Lect10.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Lect10.Views.ItemHomePage"
+             x:Name="ThisPage">
+    <!--<ContentPage.BindingContext>
+        <vm:ItemHomeViewModel/>
+    </ContentPage.BindingContext>-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <CollectionView ItemsSource="{Binding Items}" Margin="20">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout xct:TouchEffect.Command="{Binding BindingContext.GoToItemDetailPageCommand,Source={x:Reference ThisPage}}"
+                                 xct:TouchEffect.CommandParameter="{Binding .}"
+                                 xct:TouchEffect.LongPressCommand="{Binding BindingContext.DeleteItemCommand,Source={x:Reference ThisPage}}"
+                                 xct:TouchEffect.LongPressCommandParameter="{Binding .}">
+                        <Label Text="{Binding Name}"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentPage.Content>
+</ContentPage>
